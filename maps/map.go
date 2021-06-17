@@ -3,32 +3,46 @@ package main
 import "fmt"
 
 func main() {
+	var m1 map[string]string // adding values Without use of make function.. panic: assignment to entry in nil map
+	var key, value string
+	m1 = make(map[string]string) // syntax : map[key_type]value_type
 
-	var m map[string]int
-	fmt.Println(m)
-	/* A nil map has no keys, nor can keys be added.
+	m1 = map[string]string{"Id": "1", "Programming": "Go"}
 
-	The make function returns a map of the given type, initialized and ready for use.*/
+	fmt.Println(m1)
 
-	m = make(map[string]int)
-
-	// m["area"] = 12
-	// m["radius"] = 5
-
-	// fmt.Println(m)
-
-	var val int
-	var key string
 	for i := 0; i < 3; i++ {
-		fmt.Println("Enter Key:")
+		fmt.Print("Enter the Key :")
 		fmt.Scanln(&key)
-		fmt.Println("Enter Value:")
-		fmt.Scanln(&val)
-		m[key] = val
+		fmt.Print("Enter the Value :")
+		fmt.Scanln(&value)
+		m1[key] = value
+		fmt.Println()
 	}
-	fmt.Println(m)
-	fmt.Println("Enter a Key to delete:")
+
+	UpdateMap(m1)
+
+	for k, v := range m1 {
+		fmt.Printf("%v : %v\n", k, v)
+	}
+
+	//Delete a item from map
+	fmt.Print("Enter Key to delete :")
 	fmt.Scanln(&key)
-	delete(m, key)
-	fmt.Println("After deletion: ", m)
+	delete(m1, key)
+	fmt.Println("Map after Deletion :", m1)
+
+	//Check if Key is Available in Map
+	fmt.Print("enter a key to check if Key Available :")
+	fmt.Scanln(&key)
+	if val, ok := m1[key]; ok {
+		fmt.Println(key, "is available with value of", val)
+	} else {
+		fmt.Println(key, "is not available")
+	}
+
+}
+
+func UpdateMap(m1 map[string]string) {
+	m1["Location"] = "India"
 }
