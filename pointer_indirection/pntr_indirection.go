@@ -20,8 +20,9 @@ func print(s Stu) {
 	fmt.Println(s.name, s.age)
 }
 
-func change(s *Stu, age int) {
-	s.age = age
+func change(s *Stu, name string, age int) {
+	s.name = name
+	(*s).age = age
 	fmt.Println(*s)
 }
 
@@ -36,5 +37,5 @@ func main() {
 	print(s)
 
 	s = Stu{"Steve", 25}
-	change(&s, 22)
+	change(&s, "Wan", 22)
 }
